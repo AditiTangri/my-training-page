@@ -190,17 +190,24 @@
 
 <script>
   function showDay(dayNumber) {
-    // Hide all day contents
+    // Hide all day content blocks
     const days = document.querySelectorAll('.day-content');
     days.forEach(day => day.classList.remove('active'));
 
-    // Show the selected day
+    // Remove 'active' from all buttons
+    const buttons = document.querySelectorAll('.day-tabs button');
+    buttons.forEach(btn => btn.classList.remove('active'));
+
+    // Activate selected day content
     const selectedDay = document.getElementById('day' + dayNumber);
-    if(selectedDay) {
-      selectedDay.classList.add('active');
-    }
+    if (selectedDay) selectedDay.classList.add('active');
+
+    // Activate selected button
+    const activeBtn = document.querySelector('.day-tabs button:nth-child(' + dayNumber + ')');
+    if (activeBtn) activeBtn.classList.add('active');
   }
 </script>
+
 
 </body>
 </html>
