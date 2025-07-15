@@ -1,0 +1,14 @@
+body {
+  font-family: Arial, sans-serif;
+  padding-top: 70px;
+  background-color: #f8f9fa;
+}
+
+.day-content h2 {
+  color: #007bff;
+}
+
+.day-tabs button.active {
+  background-color: #007bff;
+  color: white;
+}
