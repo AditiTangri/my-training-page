@@ -2,98 +2,106 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Training 102 Report</title>
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Training 102 Report - Days 1 to 20</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding-top: 60px;
-    }
-    header {
-      background-color: #007bff;
-      color: white;
-      padding: 20px 0;
-      text-align: center;
-    }
-    section {
-      padding: 40px 20px;
-    }
-    footer {
-      background-color: #f8f9fa;
-      text-align: center;
-      padding: 15px;
-      margin-top: 40px;
+    /* We'll put minimal CSS here for demonstration */
+    .day-content { display: none; }
+    .day-content.active { display: block; }
+    .day-tabs button {
+      margin: 2px;
+      min-width: 50px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">Training 102 Report</a>
-    </div>
-  </nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">Training 102 Report</a>
+  </div>
+</nav>
 
-  <!-- Header -->
-  <header>
-    <div class="container">
-      <h1>My Training Report</h1>
-      <p>July 2025</p>
-    </div>
-  </header>
+<header class="mt-5 pt-4 text-center bg-primary text-white p-4">
+  <h1>Training 102 Report</h1>
+  <p>July 2025</p>
+</header>
 
-  <!-- About Section -->
-  <section id="about" class="bg-light">
-    <div class="container">
-      <h2>About the Training</h2>
-      <p>
-        This report highlights the activities and learning outcomes from Training 102,
-        held in July 2025. The training focused on advanced programming techniques,
-        teamwork, and real-world project development.
-      </p>
-    </div>
-  </section>
+<div class="container my-4">
 
-  <!-- Project Section -->
-  <section id="project">
-    <div class="container">
-      <h2>Project Overview</h2>
-      <p>
-        During the training, we developed a web-based application to manage tasks and productivity.
-        The technologies used included HTML, CSS, JavaScript, and GitHub for version control.
-      </p>
-    </div>
-  </section>
+  <div class="day-tabs text-center mb-4">
+    <!-- Buttons for days -->
+    <button class="btn btn-outline-primary" onclick="showDay(1)">Day 1</button>
+    <button class="btn btn-outline-primary" onclick="showDay(2)">Day 2</button>
+    <button class="btn btn-outline-primary" onclick="showDay(3)">Day 3</button>
+    <button class="btn btn-outline-primary" onclick="showDay(4)">Day 4</button>
+    <button class="btn btn-outline-primary" onclick="showDay(5)">Day 5</button>
+    <button class="btn btn-outline-primary" onclick="showDay(6)">Day 6</button>
+    <button class="btn btn-outline-primary" onclick="showDay(7)">Day 7</button>
+    <button class="btn btn-outline-primary" onclick="showDay(8)">Day 8</button>
+    <button class="btn btn-outline-primary" onclick="showDay(9)">Day 9</button>
+    <button class="btn btn-outline-primary" onclick="showDay(10)">Day 10</button>
+    <button class="btn btn-outline-primary" onclick="showDay(11)">Day 11</button>
+    <button class="btn btn-outline-primary" onclick="showDay(12)">Day 12</button>
+    <button class="btn btn-outline-primary" onclick="showDay(13)">Day 13</button>
+    <button class="btn btn-outline-primary" onclick="showDay(14)">Day 14</button>
+    <button class="btn btn-outline-primary" onclick="showDay(15)">Day 15</button>
+    <button class="btn btn-outline-primary" onclick="showDay(16)">Day 16</button>
+    <button class="btn btn-outline-primary" onclick="showDay(17)">Day 17</button>
+    <button class="btn btn-outline-primary" onclick="showDay(18)">Day 18</button>
+    <button class="btn btn-outline-primary" onclick="showDay(19)">Day 19</button>
+    <button class="btn btn-outline-primary" onclick="showDay(20)">Day 20</button>
+  </div>
 
-  <!-- Image Section (optional) -->
-  <section id="image" class="bg-light">
-    <div class="container text-center">
-      <h2>Screenshot</h2>
-      <!-- <img src="your-image.jpg" alt="Screenshot" class="img-fluid" /> -->
-      <!-- Replace 'your-image.jpg' with your image file -->
-    </div>
-  </section>
+  <!-- Day content sections -->
+  <div id="day1" class="day-content active">
+    <h2>Day 1</h2>
+    <p>Content for Day 1 training activities and notes.</p>
+    <a href="DAY 1 ( 23 JUNE 2025 ).pdf" target="_blank" class="btn btn-primary">Download Day 1 PDF</a>
+  </div>
 
-  <!-- Conclusion Section -->
-  <section id="conclusion">
-    <div class="container">
-      <h2>Conclusion</h2>
-      <p>
-        This training was a valuable experience that enhanced both technical and collaboration skills.
-        I look forward to applying these in future projects.
-      </p>
-    </div>
-  </section>
+  <div id="day2" class="day-content">
+    <h2>Day 2</h2>
+    <p>Content for Day 2 training activities and notes.</p>
+    <a href="DAY 2 ( 24 JUNE 2025 ).pdf" target="_blank" class="btn btn-primary">Download Day 2 PDF</a>
+  </div>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Your Name</p>
-  </footer>
+  <!-- Repeat for all days... -->
+  <div id="day3" class="day-content">
+    <h2>Day 3</h2>
+    <p>Content for Day 3 training activities and notes.</p>
+    <a href="DAY 3 ( 25 JUNE 2025 ).pdf" target="_blank" class="btn btn-primary">Download Day 3 PDF</a>
+  </div>
+  
+  <!-- ... Add days 4 to 20 similarly -->
+
+<!--   <div id="day20" class="day-content">
+    <h2>Day 20</h2>
+    <p>Content for Day 20 training activities and notes.</p>
+    <a href="pdfs/day20.pdf" target="_blank" class="btn btn-primary">Download Day 20 PDF</a>
+  </div>
+ -->
+</div>
+
+<footer class="bg-light text-center p-3 mt-5">
+  <p>&copy; 2025 Your Name</p>
+</footer>
+
+<script>
+  function showDay(dayNumber) {
+    // Hide all day contents
+    const days = document.querySelectorAll('.day-content');
+    days.forEach(day => day.classList.remove('active'));
+
+    // Show the selected day
+    const selectedDay = document.getElementById('day' + dayNumber);
+    if(selectedDay) {
+      selectedDay.classList.add('active');
+    }
+  }
+</script>
 
 </body>
 </html>
