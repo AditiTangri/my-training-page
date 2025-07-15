@@ -110,3 +110,32 @@ footer {
     transform: translateY(0);
   }
 }
+
+.custom-header {
+  background: linear-gradient(to right, #007bff, #00bfff);
+  color: white;
+  border-bottom: 4px solid #006fce;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.header-img {
+  width: 60px;
+  height: auto;
+}
+
+.home-btn {
+  font-weight: 500;
+  background-color: white;
+  color: #007bff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.home-btn:hover {
+  background-color: #e3f2fd;
+  color: #0056b3;
+}
+
