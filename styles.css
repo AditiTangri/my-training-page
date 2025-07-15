@@ -1,47 +1,66 @@
+/* General Layout */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding-top: 70px;
-  background-color: #eef2f5;
+  background: linear-gradient(to right, #f5f7fa, #c3cfe2);
   margin: 0;
+  color: #333;
 }
 
+header {
+  background: linear-gradient(to right, #007bff, #00bfff);
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+  border-bottom: 4px solid #006fce;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Day Tabs */
 .day-tabs {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
 }
 
 .day-tabs button {
-  margin: 4px;
-  padding: 8px 14px;
+  border: none;
+  padding: 10px 16px;
   font-weight: 500;
-  border: 1px solid #007bff;
-  border-radius: 5px;
-  background-color: white;
+  border-radius: 30px;
+  background: #ffffff;
   color: #007bff;
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 123, 255, 0.1);
 }
 
 .day-tabs button:hover {
-  background-color: #e7f0fc;
-  cursor: pointer;
+  background-color: #e0f0ff;
+  color: #0056b3;
+  transform: translateY(-2px);
 }
 
 .day-tabs button.active {
   background-color: #007bff;
   color: white;
-  box-shadow: 0 2px 5px rgba(0, 123, 255, 0.4);
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
 }
 
+/* Day Content */
 .day-content {
   display: none;
-  background-color: white;
-  padding: 25px;
-  border-radius: 8px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.8);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
   margin-top: 20px;
-  animation: fadeIn 0.4s ease-in-out;
+  animation: fadeIn 0.5s ease-in-out;
+  backdrop-filter: blur(5px);
+  border: 1px solid #e3e3e3;
 }
 
 .day-content.active {
@@ -51,34 +70,43 @@ body {
 .day-content h2 {
   color: #007bff;
   margin-bottom: 15px;
+  font-weight: 600;
 }
 
+/* Button Styles */
 .btn-primary {
   background-color: #007bff;
   border: none;
   font-weight: 500;
+  padding: 10px 18px;
+  border-radius: 8px;
+  transition: 0.3s ease;
 }
 
 .btn-primary:hover {
   background-color: #0056b3;
+  transform: scale(1.05);
 }
 
+/* Footer */
 footer {
-  background-color: #f0f0f0;
-  padding: 15px;
+  background-color: #e9ecef;
+  padding: 20px 10px;
   text-align: center;
   font-size: 0.9em;
   color: #555;
-  margin-top: 40px;
-  border-top: 1px solid #ddd;
+  margin-top: 50px;
+  border-top: 1px solid #ccc;
 }
 
+/* Animation */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.day-tabs {
-  overflow-x: auto;
-  white-space: nowrap;
-  padding-bottom: 10px;
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
