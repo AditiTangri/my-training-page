@@ -142,11 +142,12 @@ footer {
 .header-img {
   width: 100px;
   height: 100px;
-  object-fit: cover;
-  border-radius: 50%; /* Makes image circular */
-  border: 3px solid white; /* Optional: adds white border */
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  border-radius: 50%; /* Makes it circular */
+  object-fit: cover;  /* Ensures the image fills the circle */
+  border: 3px solid #fff; /* Optional white border */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
 }
+
 @media (max-width: 576px) {
   .header-img {
     width: 70px;
