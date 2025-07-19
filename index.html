@@ -1,265 +1,392 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Training TR-102 Report - Daily Diary</title>
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0; padding: 0;
-    background: #f5f5f5;
-    color: #333;
-  }
-  .container {
-    max-width: 1200px;
-    margin: 20px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.1);
-  }
-  header {
-    background: linear-gradient(to right, #000000, #434343);
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 8px 8px 0 0;
-  }
-  header img {
-    height: 40px;
-  }
-  nav.main-nav a {
-    color: white;
-    text-decoration: none;
-    background-color: #4a9782;
-    padding: 10px 15px;
-    margin: 0 5px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  nav.main-nav a:hover {
-    background-color: #004030;
-  }
-  /* DAILY DIARY section layout */
-  #daily-diary {
-    display: flex;
-    gap: 20px;
-    min-height: 600px;
-  }
-  #daily-diary nav {
-    width: 220px;
-    background-color: #d9e6e4;
-    border-radius: 10px;
-    padding: 15px;
-    overflow-y: auto;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-  #daily-diary nav a.day-link {
-    display: block;
-    padding: 10px 8px;
-    margin: 6px 0;
-    background-color: #2f5d62;
-    color: white;
-    text-align: center;
-    border-radius: 6px;
-    user-select: none;
-    transition: background-color 0.3s;
-    cursor: pointer;
-    font-weight: 600;
-  }
-  #daily-diary nav a.day-link:hover,
-  #daily-diary nav a.day-link.active {
-    background-color: #004030;
-  }
-  #daily-diary .pdf-container {
-    flex-grow: 1;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    overflow: hidden;
-  }
-  #daily-diary iframe {
-    width: 100%;
-    height: 600px;
-    border: none;
-  }
-  /* Hide all .section except active */
-  .section {
-    display: none;
-  }
-  .section.active {
-    display: block;
-  }
-  /* Responsive */
-  @media (max-width: 768px) {
-    #daily-diary {
-      flex-direction: column;
-    }
-    #daily-diary nav {
-      width: 100%;
-      max-height: 200px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      overflow-y: auto;
-    }
-    #daily-diary nav a.day-link {
-      flex: 1 0 22%;
-      margin: 5px;
-      padding: 8px 5px;
-    }
-    #daily-diary .pdf-container iframe {
-      height: 400px;
-    }
-  }
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Training TR-102 Report</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            background-size: cover;
+            color: #333;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255,255,255,0.8);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #000000, #434343);
+            padding: 10px 20px;
+            color: #fff;
+            border-radius: 10px 10px 0 0;
+        }
+        header img {
+            height: 50px;
+            margin: 5px 0;
+            max-width: 100%;
+        }
+        header .home-button {
+            background-color: #4A9782;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 5px 0;
+        }
+        header .home-button:hover {
+            background-color: #004030;
+        }
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        nav a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4A9782;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+        }
+        nav a:hover {
+            background-color: #004030;
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        h1, h2, p {
+            text-align: center;
+        }
+        .pdf-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .pdf-container iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .certificate-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .certificate-container img {
+            max-width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            background: linear-gradient(to right, #434343, #000000);
+            color: #fff;
+            border-radius: 0 0 10px 10px;
+        }
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('image/ai.png') no-repeat center center fixed;
+            background-size: cover;
+            opacity: 0.6;
+            z-index: -1;
+            pointer-events: none;
+        }
+        #dailyDiaryList a {
+            background-color: #888954;
+            margin: 3px 5px;
+        }
+        #dailyDiaryList a:hover {
+            background-color: #666;
+        }
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+            }
+            header .home-button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+            header img {
+                height: 40px;
+            }
+            .pdf-container iframe {
+                height: 400px;
+            }
+            .gallery img {
+                width: 100%;
+            }
+            #dailyDiaryList a {
+                display: block;
+                margin: 5px auto;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <img src="image/gndecLogo.png" alt="GNDEC Logo" />
-      <nav class="main-nav">
-        <a onclick="showSection('home')">Home</a>
-        <a onclick="showSection('certificate')">Training Certificate</a>
-        <a onclick="showSection('Final-Report')">Final Report</a>
-        <a onclick="showDailyDiary()">Daily Diary</a>
-        <a onclick="showSection('projects')">Projects</a>
-      </nav>
-      <img src="image/step.png" alt="STEP Logo" />
-    </header>
+    <div class="background-image"></div>
+    <div class="container">
+        <header>
+            <a href="https://www.gndec.ac.in/"><img src="image/gndecLogo.png" alt="GNDEC Logo" /></a>
+            <a href="#" class="home-button" onclick="showSection('home')">Home</a>
+            <a href="https://stepgndec.com/"><img src="image/step.png" alt="STEP Logo" /></a>
+        </header>
 
-    <!-- Other sections -->
-    <section id="home" class="section active">
-      <h1 style="text-align:center;">Training TR-102</h1>
-      <p style="text-align:center;">
-        BY : ADITI TANGRI <br />
-        URN : 2302460 <br />
-        CRN : 2315004 <br />
-        Guru Nanak Dev Engineering College, Ludhiana
-      </p>
-      <h2 style="text-align:center;">4-Weeks Training at Science and Technology Entrepreneurs' Park, Ludhiana</h2>
-    </section>
+        <section id="home" class="section active">
+            <h1>Training TR-102 </h1>
+            <p>
+                BY : ADITI TANGRI <br />
+                URN : 2302460 <br />
+                CRN : 2315004 <br />
+                Guru Nanak Dev Engineering College, Ludhiana
+            </p>
+            <h2>
+                4-Weeks Training at <br />
+                Science and Technology Entrepreneurs' Park, Ludhiana
+            </h2>
+        </section>
 
-    <section id="certificate" class="section">
-      <h1>Certificate</h1>
-      <div style="text-align:center;">
-        <img src="TC.jpg" alt="Training Certificate" style="max-width:50%; border-radius:10px;"/>
-      </div>
-    </section>
+        <nav>
+            <a style="background-color: #2F5D62;" href="#" onclick="showSection('certificate')">Training Certificate</a><br />
+            <a style="background-color: #2F5D62;" href="#" onclick="showSection('Final-Report')">Final Report</a><br />
 
-    <section id="Final-Report" class="section">
-      <h1>Final Report</h1>
-      <div class="pdf-container">
-        <iframe src="https://srijansingh9.github.io/Training-102-Report/Final Report.pdf" title="Final Report PDF"></iframe>
-      </div>
-    </section>
+            <!-- Daily Diary button -->
+            <a href="#" id="dailyDiaryBtn" style="background-color: #2F5D62;" onclick="toggleDailyDiary()">Daily Diary ▼</a>
+            <div id="dailyDiaryList" style="display:none; margin-top: 10px; text-align:center;">
+                <!-- Day links -->
+                <a href="#" onclick="showSection('day1')">Day 1</a>
+                <a href="#" onclick="showSection('day2')">Day 2</a>
+                <a href="#" onclick="showSection('day3')">Day 3</a>
+                <a href="#" onclick="showSection('day4')">Day 4</a>
+                <a href="#" onclick="showSection('day5')">Day 5</a>
+                <a href="#" onclick="showSection('day6')">Day 6</a>
+                <a href="#" onclick="showSection('day7')">Day 7</a>
+                <a href="#" onclick="showSection('day8')">Day 8</a>
+                <a href="#" onclick="showSection('day9')">Day 9</a>
+                <a href="#" onclick="showSection('day10')">Day 10</a>
+                <a href="#" onclick="showSection('day11')">Day 11</a>
+                <a href="#" onclick="showSection('day12')">Day 12</a>
+                <a href="#" onclick="showSection('day13')">Day 13</a>
+                <a href="#" onclick="showSection('day14')">Day 14</a>
+                <a href="#" onclick="showSection('day15')">Day 15</a>
+                <a href="#" onclick="showSection('day16')">Day 16</a>
+                <a href="#" onclick="showSection('day17')">Day 17</a>
+                <a href="#" onclick="showSection('day18')">Day 18</a>
+                <a href="#" onclick="showSection('day19')">Day 19</a>
+                <a href="#" onclick="showSection('day20')">Day 20</a>
+            </div>
 
-    <!-- DAILY DIARY SECTION -->
-    <section id="daily-diary" class="section">
-      <nav id="day-list">
-        <!-- Days buttons will be inserted here by JS -->
-      </nav>
-      <div class="pdf-container">
-        <iframe id="daily-pdf" src="" title="Daily Diary PDF"></iframe>
-      </div>
-    </section>
+            <br />
+            <a style="background-color: rgb(13, 0, 113);" href="#" onclick="showSection('projects')">Projects</a>
+        </nav>
 
-    <section id="projects" class="section">
-      <h1>Projects</h1>
-      <div style="display:flex; flex-wrap: wrap; gap:10px; justify-content:center;">
-        <a href="https://github.com/srijansingh9/Movie_Recommendation_System" target="_blank" style="padding:10px 20px; background:#888954; color:#fff; border-radius:5px; text-decoration:none;">Movie Recommender</a>
-        <a href="https://github.com/srijansingh9/Face_Recognition" target="_blank" style="padding:10px 20px; background:#888954; color:#fff; border-radius:5px; text-decoration:none;">Face Recognition</a>
-        <a href="https://github.com/srijansingh9/Hand_Gesture_Recognition" target="_blank" style="padding:10px 20px; background:#888954; color:#fff; border-radius:5px; text-decoration:none;">Hand Gesture Recognition</a>
-        <a href="https://github.com/srijansingh9/AndroidApp" target="_blank" style="padding:10px 20px; background:#888954; color:#fff; border-radius:5px; text-decoration:none;">Android App</a>
-        <a href="https://github.com/srijansingh9/YOLO_v3_Object_Detection" target="_blank" style="padding:10px 20px; background:#888954; color:#fff; border-radius:5px; text-decoration:none;">YOLO v3 Object Detection</a>
-        <a href="https://github.com/srijansingh9/Action_Recognition" target="_blank" style="padding:10px 20px; background:#888954; color:#fff; border-radius:5px; text-decoration:none;">Action Recognition</a>
-        <a href="https://github.com/srijansingh9/Traffic_Light_Recognition" target="_blank" style="padding:10px 20px; background:#888954; color:#fff; border-radius:5px; text-decoration:none;">Traffic Light Recognition</a>
-      </div>
-    </section>
+        <section id="certificate" class="section">
+            <h1>Certificate</h1>
+            <div class="certificate-container">
+                <img src="TC.jpg" alt="Training Certificate" />
+            </div>
+        </section>
 
-  </div>
+        <section id="Final-Report" class="section">
+            <h1>Final Report</h1>
+            <div class="pdf-container">
+                <iframe src="https://srijansingh9.github.io/Training-102-Report/Final Report.pdf"></iframe>
+            </div>
+        </section>
 
-  <script>
-    // PDF paths for each day
-    const dayPdfs = {
-      1: "pdfs/DAY 1 ( 23 JUNE 2025 ).pdf",
-      2: "pdfs/DAY 2 ( 24 JUNE 2025 ).pdf",
-      3: "pdfs/DAY 3 ( 25 JUNE 2025 ).pdf",
-      4: "pdfs/DAY 4 ( 26 JUNE 2025 ).pdf",
-      5: "pdfs/DAY 5 ( 27 JUNE 2025 ).pdf",
-      6: "pdfs/DAY 6 ( 28 JUNE 2025 ).pdf",
-      7: "pdfs/DAY 7 ( 29 JUNE 2025 ).pdf",
-      8: "pdfs/DAY 8 ( 30 JUNE 2025 ).pdf",
-      9: "pdfs/DAY 9 ( 1 JULY 2025 ).pdf",
-      10: "pdfs/DAY 10 ( 2 JULY 2025 ).pdf",
-      11: "pdfs/DAY 11 ( 3 JULY 2025 ).pdf",
-      12: "pdfs/DAY 12 ( 4 JULY 2025 ).pdf",
-      13: "pdfs/DAY 13 ( 5 JULY 2025 ).pdf",
-      14: "pdfs/DAY 14 ( 6 JULY 2025 ).pdf",
-      15: "pdfs/DAY 15 ( 7 JULY 2025 ).pdf",
-      16: "pdfs/DAY 16 ( 8 JULY 2025 ).pdf",
-      17: "pdfs/DAY 17 ( 9 JULY 2025 ).pdf",
-      18: "pdfs/DAY 18 ( 10 JULY 2025 ).pdf",
-      19: "pdfs/DAY 19 ( 11 JULY 2025 ).pdf",
-      20: "pdfs/DAY 20 ( 12 JULY 2025 ).pdf"
-    };
+        <!-- Day Sections -->
+        <section id="day1" class="section">
+            <h1>Training Report Day 1</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 1 ( 23 JUNE 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day2" class="section">
+            <h1>Training Report Day 2</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 2 ( 24 JUNE 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day3" class="section">
+            <h1>Training Report Day 3</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 3 ( 25 JUNE 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day4" class="section">
+            <h1>Training Report Day 4</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 4 ( 26 JUNE 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day5" class="section">
+            <h1>Training Report Day 5</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 5 ( 27 JUNE 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day6" class="section">
+            <h1>Training Report Day 6</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 6 ( 30 JUNE 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day7" class="section">
+            <h1>Training Report Day 7</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 7 ( 1 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day8" class="section">
+            <h1>Training Report Day 8</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 8 ( 2 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day9" class="section">
+            <h1>Training Report Day 9</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 9 ( 3 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day10" class="section">
+            <h1>Training Report Day 10</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 10 ( 4 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day11" class="section">
+            <h1>Training Report Day 11</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 11 ( 7 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day12" class="section">
+            <h1>Training Report Day 12</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 12 ( 8 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day13" class="section">
+            <h1>Training Report Day 13</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 13 ( 9 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day14" class="section">
+            <h1>Training Report Day 14</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 14 ( 10 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day15" class="section">
+            <h1>Training Report Day 15</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 15 ( 11 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day16" class="section">
+            <h1>Training Report Day 16</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 16 ( 14 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day17" class="section">
+            <h1>Training Report Day 17</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 17 ( 15 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day18" class="section">
+            <h1>Training Report Day 18</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 18 ( 16 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day19" class="section">
+            <h1>Training Report Day 19</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 19 ( 17 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day20" class="section">
+            <h1>Training Report Day 20</h1>
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 20 ( 18 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
 
-    // Show a section, hide others
-    function showSection(sectionId) {
-      const sections = document.querySelectorAll('.section');
-      sections.forEach(s => s.classList.remove('active'));
-      const target = document.getElementById(sectionId);
-      if (target) target.classList.add('active');
-      clearDaySelection();
-      window.scrollTo(0, 0);
-    }
+        <section id="projects" class="section">
+            <h1>Projects</h1>
+            <p>Project information goes here...</p>
+        </section>
 
-    // Show Daily Diary with day list and no pdf initially
-    function showDailyDiary() {
-      showSection('daily-diary');
-      setPdf(null);
-      clearDaySelection();
-    }
+        <footer>
+            <p>
+                © 2025 Designed by Aditi Tangri. For more information, visit
+                <a href="https://www.gndec.ac.in/" target="_blank" rel="noopener noreferrer">GNDEC Official Website</a>.
+            </p>
+        </footer>
+    </div>
 
-    // Clear active day highlight
-    function clearDaySelection() {
-      document.querySelectorAll('#day-list a.day-link').forEach(el => el.classList.remove('active'));
-    }
+    <script>
+        function toggleDailyDiary() {
+            const diaryList = document.getElementById('dailyDiaryList');
+            if (diaryList.style.display === 'none' || diaryList.style.display === '') {
+                diaryList.style.display = 'block';
+            } else {
+                diaryList.style.display = 'none';
+            }
+        }
 
-    // Set PDF in iframe, or clear if null
-    function setPdf(dayNum) {
-      const iframe = document.getElementById('daily-pdf');
-      if (dayNum && dayPdfs[dayNum]) {
-        iframe.src = dayPdfs[dayNum];
-      } else {
-        iframe.src = "";
-      }
-    }
+        function showSection(id) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(id).classList.add('active');
 
-    // Populate the day list nav dynamically
-    function populateDays() {
-      const dayList = document.getElementById('day-list');
-      dayList.innerHTML = ""; // Clear first
-      for (let i = 1; i <= 20; i++) {
-        const a = document.createElement('a');
-        a.textContent = `Day ${i}`;
-        a.href = "javascript:void(0)";
-        a.classList.add('day-link');
-        a.onclick = function() {
-          clearDaySelection();
-          a.classList.add('active');
-          setPdf(i);
-        };
-        dayList.appendChild(a);
-      }
-    }
+            const diaryList = document.getElementById('dailyDiaryList');
 
-    // Initial setup
-    window.onload = function() {
-      populateDays();
-    };
-  </script>
+            // Show daily diary list only when a day is active, otherwise hide it
+            if (id.startsWith('day')) {
+                diaryList.style.display = 'block';
+            } else {
+                diaryList.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
