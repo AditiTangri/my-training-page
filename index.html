@@ -9,7 +9,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background: url('image/ai.png') no-repeat center center fixed;
+           position: relative;
             background-size: cover;
             color: #333;
         }
@@ -159,7 +159,7 @@ nav a:hover {
         footer a:hover {
             text-decoration: underline;
         }
-        .background-image {
+       .background-image {
     position: fixed;
     top: 0;
     left: 0;
@@ -167,9 +167,11 @@ nav a:hover {
     height: 100%;
     background: url('image/ai.png') no-repeat center center fixed;
     background-size: cover;
-    opacity: 0.2; /* Adjust opacity */
+    opacity: 0.2; /* You can adjust this value */
     z-index: -1;
+    pointer-events: none;
 }
+
 
         @media (max-width: 768px) {
             header {
