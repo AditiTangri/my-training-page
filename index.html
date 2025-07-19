@@ -1,269 +1,415 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Training TR-102 Report</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-size: cover;
-      color: #333;
-    }
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: rgba(255, 255, 255, 0.8);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-    }
-    header {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      background: linear-gradient(to right, #000000, #434343);
-      padding: 10px 20px;
-      color: #fff;
-      border-radius: 10px 10px 0 0;
-    }
-    header img {
-      height: 50px;
-      margin: 5px 0;
-      max-width: 100%;
-    }
-    header .home-button {
-      background-color: #4A9782;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-      font-size: 16px;
-      margin: 5px 0;
-    }
-    header .home-button:hover {
-      background-color: #004030;
-    }
-    nav {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    nav a {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #4A9782;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      margin: 5px;
-      transition: background-color 0.3s ease;
-    }
-    nav a:hover {
-      background-color: #004030;
-    }
-    .section {
-      display: none;
-    }
-    .section.active {
-      display: block;
-    }
-    h1, h2, p {
-      text-align: center;
-    }
-    .certificate-container img {
-      max-width: 50%;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-      background: linear-gradient(to right, #434343, #000000);
-      color: #fff;
-      border-radius: 0 0 10px 10px;
-    }
-    footer a {
-      color: #3498db;
-      text-decoration: none;
-    }
-    footer a:hover {
-      text-decoration: underline;
-    }
-    .background-image {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('image/ai.png') no-repeat center center fixed;
-      background-size: cover;
-      opacity: 0.6;
-      z-index: -1;
-      pointer-events: none;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Training TR-102 Report</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            background-size: cover;
+            color: #333;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255,255,255,0.8);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #000000, #434343);
+            padding: 10px 20px;
+            color: #fff;
+            border-radius: 10px 10px 0 0;
+        }
+        header img {
+            height: 50px;
+            margin: 5px 0;
+            max-width: 100%;
+        }
+        header .home-button {
+            background-color: #4A9782;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 5px 0;
+        }
+        header .home-button:hover {
+            background-color: #004030;
+        }
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        nav a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4A9782;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+        }
+        nav a:hover {
+            background-color: #004030;
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        h1, h2, p {
+            text-align: center;
+        }
+        .pdf-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .pdf-container iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .certificate-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .certificate-container img {
+            max-width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            background: linear-gradient(to right, #434343, #000000);
+            color: #fff;
+            border-radius: 0 0 10px 10px;
+        }
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('image/ai.png') no-repeat center center fixed;
+            background-size: cover;
+            opacity: 0.6;
+            z-index: -1;
+            pointer-events: none;
+        }
+     #dailyDiaryList {
+    display: none;
+    margin-top: 10px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+}
 
-    /* Daily Diary Styles */
-    #dailyDiaryList {
-      display: none;
-      text-align: center;
-      margin-top: 10px;
-      flex-wrap: wrap;
-      gap: 10px;
+#dailyDiaryList a {
+    background-color: #B9D4AA;
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    flex: 0 1 calc(25% - 10px); /* 4 per row on desktop */
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+#dailyDiaryList a:hover {
+    background-color: #84AE92;
+}
+
+
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+            }
+            header .home-button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+            header img {
+                height: 40px;
+            }
+            .pdf-container iframe {
+                height: 400px;
+            }
+            .gallery img {
+                width: 100%;
+            }
+           #dailyDiaryList a {
+        flex: 0 1 calc(50% - 10px); /* 2 per row on mobile */
+        font-size: 13px;
+        padding: 8px 10px;
     }
-
-    #dailyDiaryList a {
-      display: inline-block;
-      background-color: #B9D4AA;
-      color: #000;
-      text-decoration: none;
-      margin: 5px;
-      padding: 10px 16px;
-      border-radius: 5px;
-      font-weight: 500;
-      transition: background-color 0.3s ease;
-    }
-
-    #dailyDiaryList a:hover {
-      background-color: #84AE92;
-    }
-
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: center;
-      }
-      header .home-button {
-        font-size: 14px;
-        padding: 8px 16px;
-      }
-      header img {
-        height: 40px;
-      }
-
-      #dailyDiaryList {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      #dailyDiaryList a {
-        width: 90%;
-        max-width: 250px;
-        margin: 6px 0;
-        font-size: 16px;
-      }
-    }
-  </style>
+        }
+    </style>
 </head>
 <body>
-  <div class="background-image"></div>
-  <div class="container">
-    <header>
-      <a href="https://www.gndec.ac.in/"><img src="image/gndecLogo.png" alt="GNDEC Logo" /></a>
-      <a href="#" class="home-button" onclick="showSection('home')">Home</a>
-      <a href="https://stepgndec.com/"><img src="image/step.png" alt="STEP Logo" /></a>
-    </header>
+    <div class="background-image"></div>
+    <div class="container">
+        <header>
+            <a href="https://www.gndec.ac.in/"><img src="image/gndecLogo.png" alt="GNDEC Logo" /></a>
+            <a href="#" class="home-button" onclick="showSection('home')">Home</a>
+            <a href="https://stepgndec.com/"><img src="image/step.png" alt="STEP Logo" /></a>
+        </header>
 
-    <section id="home" class="section active">
-      <h1>Training TR-102</h1>
-      <p>
-        BY : ADITI TANGRI <br />
-        URN : 2302460 <br />
-        CRN : 2315004 <br />
-        Guru Nanak Dev Engineering College, Ludhiana
-      </p>
-      <h2>
-        4-Weeks Training at <br />
-        Science and Technology Entrepreneurs' Park, Ludhiana
-      </h2>
-    </section>
+        <section id="home" class="section active">
+            <h1>Training TR-102 </h1>
+            <p>
+                BY : ADITI TANGRI <br />
+                URN : 2302460 <br />
+                CRN : 2315004 <br />
+                Guru Nanak Dev Engineering College, Ludhiana
+            </p>
+            <h2>
+                4-Weeks Training at <br />
+                Science and Technology Entrepreneurs' Park, Ludhiana
+            </h2>
+        </section>
 
-    <nav>
-      <a style="background-color: #2F5D62;" href="#" onclick="showSection('certificate')">Training Certificate</a><br />
-      <a style="background-color: #2F5D62;" href="#" onclick="showSection('Final-Report')">Final Report</a><br />
+        <nav>
+            <a style="background-color: #2F5D62;" href="#" onclick="showSection('certificate')">Training Certificate</a><br />
+            <a style="background-color: #2F5D62;" href="#" onclick="showSection('Final-Report')">Final Report</a><br />
 
-      <a href="#" id="dailyDiaryBtn" style="background-color: #2F5D62;" onclick="toggleDailyDiary()">Daily Diary</a>
-      <div id="dailyDiaryList">
-        <!-- Downloadable PDF Day Links -->
-        <a href="pdfs/DAY 1 ( 23 JUNE 2025 ).pdf" download>Day 1</a>
-        <a href="pdfs/DAY 2 ( 24 JUNE 2025 ).pdf" download>Day 2</a>
-        <a href="pdfs/DAY 3 ( 25 JUNE 2025 ).pdf" download>Day 3</a>
-        <a href="pdfs/DAY 4 ( 26 JUNE 2025 ).pdf" download>Day 4</a>
-        <a href="pdfs/DAY 5 ( 27 JUNE 2025 ).pdf" download>Day 5</a>
-        <a href="pdfs/DAY 6 ( 30 JUNE 2025 ).pdf" download>Day 6</a>
-        <a href="pdfs/DAY 7 ( 1 JULY 2025 ).pdf" download>Day 7</a>
-        <a href="pdfs/DAY 8 ( 2 JULY 2025 ).pdf" download>Day 8</a>
-        <a href="pdfs/DAY 9 ( 3 JULY 2025 ).pdf" download>Day 9</a>
-        <a href="pdfs/DAY 10 ( 4 JULY 2025 ).pdf" download>Day 10</a>
-        <a href="pdfs/DAY 11 ( 7 JULY 2025 ).pdf" download>Day 11</a>
-        <a href="pdfs/DAY 12 ( 8 JULY 2025 ).pdf" download>Day 12</a>
-        <a href="pdfs/DAY 13 ( 9 JULY 2025 ).pdf" download>Day 13</a>
-        <a href="pdfs/DAY 14 ( 10 JULY 2025 ).pdf" download>Day 14</a>
-        <a href="pdfs/DAY 15 ( 11 JULY 2025 ).pdf" download>Day 15</a>
-        <a href="pdfs/DAY 16 ( 14 JULY 2025 ).pdf" download>Day 16</a>
-        <a href="pdfs/DAY 17 ( 15 JULY 2025 ).pdf" download>Day 17</a>
-        <a href="pdfs/DAY 18 ( 16 JULY 2025 ).pdf" download>Day 18</a>
-        <a href="pdfs/DAY 19 ( 17 JULY 2025 ).pdf" download>Day 19</a>
-        <a href="pdfs/DAY 20 ( 18 JULY 2025 ).pdf" download>Day 20</a>
-      </div>
+            <!-- Daily Diary button -->
+                <a href="#" id="dailyDiaryBtn" style="background-color: #2F5D62;" onclick="toggleDailyDiary()">Daily Diary</a>
+            <div id="dailyDiaryList" style="display:none; margin-top: 10px; text-align:center;">
+                <!-- Day links -->
+                <a href="#" onclick="showSection('day1')">Day 1</a>
+                <a href="#" onclick="showSection('day2')">Day 2</a>
+                <a href="#" onclick="showSection('day3')">Day 3</a>
+                <a href="#" onclick="showSection('day4')">Day 4</a>
+                <a href="#" onclick="showSection('day5')">Day 5</a>
+                <a href="#" onclick="showSection('day6')">Day 6</a>
+                <a href="#" onclick="showSection('day7')">Day 7</a>
+                <a href="#" onclick="showSection('day8')">Day 8</a>
+                <a href="#" onclick="showSection('day9')">Day 9</a>
+                <a href="#" onclick="showSection('day10')">Day 10</a>
+                <a href="#" onclick="showSection('day11')">Day 11</a>
+                <a href="#" onclick="showSection('day12')">Day 12</a>
+                <a href="#" onclick="showSection('day13')">Day 13</a>
+                <a href="#" onclick="showSection('day14')">Day 14</a>
+                <a href="#" onclick="showSection('day15')">Day 15</a>
+                <a href="#" onclick="showSection('day16')">Day 16</a>
+                <a href="#" onclick="showSection('day17')">Day 17</a>
+                <a href="#" onclick="showSection('day18')">Day 18</a>
+                <a href="#" onclick="showSection('day19')">Day 19</a>
+                <a href="#" onclick="showSection('day20')">Day 20</a>
+            </div>
 
-      <br />
-      <a style="background-color: rgb(13, 0, 113);" href="#" onclick="showSection('projects')">Projects</a>
-    </nav>
+            <br />
+            <a style="background-color: rgb(13, 0, 113);" href="#" onclick="showSection('projects')">Projects</a>
+        </nav>
 
-    <section id="certificate" class="section">
-      <h1>Certificate</h1>
-      <div class="certificate-container">
-        <img src="TC.jpg" alt="Training Certificate" />
-      </div>
-    </section>
+        <section id="certificate" class="section">
+            <h1>Certificate</h1>
+            <div class="certificate-container">
+                <img src="TC.jpg" alt="Training Certificate" />
+            </div>
+        </section>
 
-    <section id="Final-Report" class="section">
-      <h1>Final Report</h1>
-      <div class="pdf-container">
-        <iframe src="https://srijansingh9.github.io/Training-102-Report/Final Report.pdf" width="100%" height="600" style="border:none;border-radius:10px;"></iframe>
-      </div>
-    </section>
+        <section id="Final-Report" class="section">
+            <h1>Final Report</h1>
+            <div class="pdf-container">
+                <iframe src="https://srijansingh9.github.io/Training-102-Report/Final Report.pdf"></iframe>
+            </div>
+        </section>
 
-    <section id="projects" class="section">
-      <h1>Projects</h1>
-      <p>Project information goes here...</p>
-    </section>
+        <!-- Day Sections -->
+        <section id="day1" class="section">
+            
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 1 ( 23 JUNE 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day2" class="section">
+            
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 2 ( 24 JUNE 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day3" class="section">
+           
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 3 ( 25 JUNE 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day4" class="section">
+            
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 4 ( 26 JUNE 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day5" class="section">
+            
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 5 ( 27 JUNE 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day6" class="section">
+            
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 6 ( 30 JUNE 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day7" class="section">
+            
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 7 ( 1 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day8" class="section">
+            
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 8 ( 2 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day9" class="section">
+            
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 9 ( 3 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day10" class="section">
+            
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 10 ( 4 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day11" class="section">
+            
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 11 ( 7 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day12" class="section">
+           
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 12 ( 8 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day13" class="section">
+          
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 13 ( 9 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day14" class="section">
+            
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 14 ( 10 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day15" class="section">
+           
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 15 ( 11 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day16" class="section">
+            
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 16 ( 14 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day17" class="section">
+           
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 17 ( 15 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day18" class="section">
+         
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 18 ( 16 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day19" class="section">
+          
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 19 ( 17 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
+        <section id="day20" class="section">
+           
+            <div class="pdf-container">
+                <iframe src="pdfs/DAY 20 ( 18 JULY 2025 ).pdf"></iframe>
+            </div>
+        </section>
 
-    <footer>
-      <p>
-        © 2025 Designed by Aditi Tangri. For more information, visit
-        <a href="https://www.gndec.ac.in/" target="_blank" rel="noopener noreferrer">GNDEC Official Website</a>.
-      </p>
-    </footer>
-  </div>
+        <section id="projects" class="section">
+            <h1>Projects</h1>
+            <p>Project information goes here...</p>
+        </section>
 
-  <script>
-    function toggleDailyDiary() {
-      const diaryList = document.getElementById('dailyDiaryList');
-      if (diaryList.style.display === 'none' || diaryList.style.display === '') {
-        diaryList.style.display = 'flex';
-      } else {
-        diaryList.style.display = 'none';
-      }
-    }
+        <footer>
+            <p>
+                © 2025 Designed by Aditi Tangri. For more information, visit
+                <a href="https://www.gndec.ac.in/" target="_blank" rel="noopener noreferrer">GNDEC Official Website</a>.
+            </p>
+        </footer>
+    </div>
 
-    function showSection(id) {
-      const sections = document.querySelectorAll('.section');
-      sections.forEach(section => section.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+    <script>
+        function toggleDailyDiary() {
+            const diaryList = document.getElementById('dailyDiaryList');
+            if (diaryList.style.display === 'none' || diaryList.style.display === '') {
+                diaryList.style.display = 'block';
+            } else {
+                diaryList.style.display = 'none';
+            }
+        }
 
-      // Hide diary list when not on daily diary
-      if (!id.startsWith('day')) {
-        document.getElementById('dailyDiaryList').style.display = 'none';
-      }
-    }
-  </script>
+        function showSection(id) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(id).classList.add('active');
+
+            const diaryList = document.getElementById('dailyDiaryList');
+
+            // Show daily diary list only when a day is active, otherwise hide it
+            if (id.startsWith('day')) {
+                diaryList.style.display = 'block';
+            } else {
+                diaryList.style.display = 'none';
+            }
+        }
+    </script>
 </body>
-</html>
+</html> 
