@@ -1,345 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Training TR-102 Report</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      position: relative;
-      background-size: cover;
-      color: #333;
-    }
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: rgba(255,255,255,0.9);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-      min-height: 80vh;
-      display: flex;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Training TR-102 Report - Daily Diary</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 0;
+    background: #f5f5f5;
+    color: #333;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  }
+  header {
+    background: linear-gradient(to right, #000000, #434343);
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px 8px 0 0;
+  }
+  header img {
+    height: 40px;
+  }
+  nav.main-nav a {
+    color: white;
+    text-decoration: none;
+    background-color: #4a9782;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  nav.main-nav a:hover {
+    background-color: #004030;
+  }
+  /* DAILY DIARY section layout */
+  #daily-diary {
+    display: flex;
+    gap: 20px;
+    min-height: 600px;
+  }
+  #daily-diary nav {
+    width: 220px;
+    background-color: #d9e6e4;
+    border-radius: 10px;
+    padding: 15px;
+    overflow-y: auto;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  #daily-diary nav a.day-link {
+    display: block;
+    padding: 10px 8px;
+    margin: 6px 0;
+    background-color: #2f5d62;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    user-select: none;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  #daily-diary nav a.day-link:hover,
+  #daily-diary nav a.day-link.active {
+    background-color: #004030;
+  }
+  #daily-diary .pdf-container {
+    flex-grow: 1;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+  #daily-diary iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+  }
+  /* Hide all .section except active */
+  .section {
+    display: none;
+  }
+  .section.active {
+    display: block;
+  }
+  /* Responsive */
+  @media (max-width: 768px) {
+    #daily-diary {
       flex-direction: column;
     }
-    header {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      background: linear-gradient(to right, #000000, #434343);
-      padding: 10px 20px;
-      color: #fff;
-      border-radius: 10px 10px 0 0;
-    }
-    header img {
-      height: 50px;
-      margin: 5px 0;
-      max-width: 100%;
-    }
-    header .home-button {
-      background-color: #4A9782;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-      font-size: 16px;
-      margin: 5px 0;
-    }
-    header .home-button:hover {
-      background-color: #004030;
-    }
-    nav {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .project-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      margin: 20px 0;
-    }
-    .project-button {
-      background-color: #888954;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      margin: 5px;
-      transition: background-color 0.3s ease;
-      display: inline-block;
-      padding: 10px 20px;
-      cursor: pointer;
-    }
-    .project-button:hover {
-      background-color: #666;
-    }
-    nav a {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #4A9782;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      margin: 5px;
-      transition: background-color 0.3s ease;
-      cursor: pointer;
-    }
-    nav a:hover {
-      background-color: #004030;
-    }
-
-    .section {
-      display: none;
-    }
-    .section.active {
-      display: block;
-    }
-    h1, h2, p {
-      text-align: center;
-    }
-    .pdf-container {
-      text-align: center;
-      margin: 20px 0;
-      flex-grow: 1;
-      height: 600px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .pdf-container iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: 10px;
-    }
-
-    .certificate-container {
-      text-align: center;
-      margin-top: 20px;
-    }
-    .certificate-container img {
-      max-width: 50%;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-      background: linear-gradient(to right, #434343, #000000);
-      color: #fff;
-      border-radius: 0 0 10px 10px;
-    }
-    footer a {
-      color: #3498db;
-      text-decoration: none;
-    }
-    footer a:hover {
-      text-decoration: underline;
-    }
-    .background-image {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('image/ai.png') no-repeat center center fixed;
-      background-size: cover;
-      opacity: 0.6;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    /* Daily diary section flex layout */
-    #daily-diary {
-      display: flex;
-      flex-direction: row;
-      gap: 20px;
-      min-height: 600px;
-    }
     #daily-diary nav {
-      flex-shrink: 0;
-      width: 200px;
-      background-color: #d9e6e4;
-      border-radius: 10px;
-      padding: 15px;
+      width: 100%;
+      max-height: 200px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       overflow-y: auto;
-      max-height: 600px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    #daily-diary nav a.project-button {
-      background-color: #2F5D62;
-      display: block;
-      margin: 8px 0;
-      padding: 10px;
-      color: #fff;
-      text-align: center;
-      border-radius: 5px;
-      user-select: none;
-      transition: background-color 0.3s;
+    #daily-diary nav a.day-link {
+      flex: 1 0 22%;
+      margin: 5px;
+      padding: 8px 5px;
     }
-    #daily-diary nav a.project-button:hover,
-    #daily-diary nav a.project-button.active {
-      background-color: #004030;
+    #daily-diary .pdf-container iframe {
+      height: 400px;
     }
-
-    #daily-diary .pdf-container {
-      flex-grow: 1;
-      min-width: 0;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: center;
-      }
-      header .home-button {
-        font-size: 14px;
-        padding: 8px 16px;
-      }
-      header img {
-        height: 40px;
-      }
-      #daily-diary {
-        flex-direction: column;
-      }
-      #daily-diary nav {
-        width: 100%;
-        max-height: none;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 10px 5px;
-      }
-      #daily-diary nav a.project-button {
-        margin: 5px 8px;
-        padding: 8px 12px;
-        width: auto;
-      }
-      #daily-diary .pdf-container {
-        height: 400px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <div class="background-image"></div>
   <div class="container">
     <header>
-      <a href="https://www.gndec.ac.in/"><img src="image/gndecLogo.png" alt="GNDEC Logo" /></a>
-      <a href="#" class="home-button" onclick="showSection('home')">Home</a>
-      <a href="https://stepgndec.com/"><img src="image/step.png" alt="STEP Logo" /></a>
+      <img src="image/gndecLogo.png" alt="GNDEC Logo" />
+      <nav class="main-nav">
+        <a onclick="showSection('home')">Home</a>
+        <a onclick="showSection('certificate')">Training Certificate</a>
+        <a onclick="showSection('Final-Report')">Final Report</a>
+        <a onclick="showDailyDiary()">Daily Diary</a>
+        <a onclick="showSection('projects')">Projects</a>
+      </nav>
+      <img src="image/step.png" alt="STEP Logo" />
     </header>
 
+    <!-- Other sections -->
     <section id="home" class="section active">
-      <h1>Training TR-102</h1>
-      <p>
+      <h1 style="text-align:center;">Training TR-102</h1>
+      <p style="text-align:center;">
         BY : ADITI TANGRI <br />
         URN : 2302460 <br />
         CRN : 2315004 <br />
         Guru Nanak Dev Engineering College, Ludhiana
       </p>
-      <h2>4-Weeks Training at <br /> Science and Technology Entrepreneurs' Park, Ludhiana</h2>
+      <h2 style="text-align:center;">4-Weeks Training at Science and Technology Entrepreneurs' Park, Ludhiana</h2>
     </section>
-
-    <nav>
-      <a style="background-color: #2F5D62;" href="#" onclick="showSection('certificate')">Training Certificate</a>
-      <br />
-      <a style="background-color: #2F5D62;" href="#" onclick="showSection('Final-Report')">Final Report</a>
-      <br />
-      <a style="background-color: #2F5D62;" href="#" onclick="showDailyDiary()">Daily Diary</a>
-      <br /><br />
-      <a style="background-color: rgb(13, 0, 113);" href="#" onclick="showSection('projects')">Projects</a>
-    </nav>
 
     <section id="certificate" class="section">
       <h1>Certificate</h1>
-      <div class="certificate-container">
-        <img src="TC.jpg" alt="Training Certificate" />
+      <div style="text-align:center;">
+        <img src="TC.jpg" alt="Training Certificate" style="max-width:50%; border-radius:10px;"/>
       </div>
     </section>
 
     <section id="Final-Report" class="section">
       <h1>Final Report</h1>
       <div class="pdf-container">
-        <iframe src="https://srijansingh9.github.io/Training-102-Report/Final Report.pdf"></iframe>
+        <iframe src="https://srijansingh9.github.io/Training-102-Report/Final Report.pdf" title="Final Report PDF"></iframe>
       </div>
     </section>
 
+    <!-- DAILY DIARY SECTION -->
     <section id="daily-diary" class="section">
-      <h1 style="text-align:center; width: 100%;">Daily Diary</h1>
-      <nav id="day-links">
-        <!-- Day buttons injected by JS for easy update -->
+      <nav id="day-list">
+        <!-- Days buttons will be inserted here by JS -->
       </nav>
       <div class="pdf-container">
-        <iframe id="day-pdf" src="" title="Daily Diary PDF"></iframe>
+        <iframe id="daily-pdf" src="" title="Daily Diary PDF"></iframe>
       </div>
     </section>
 
     <section id="projects" class="section">
       <h1>Projects</h1>
-      <div class="project-buttons">
-        <a href="https://github.com/srijansingh9/Movie_Recommendation_System" target="_blank" class="project-button">Movie Recommender</a>
-        <a href="https://github.com/srijansingh9/Face_Recognition" target="_blank" class="project-button">Face Recognition</a>
-        <a href="https://github.com/srijansingh9/Hand_Gesture_Recognition" target="_blank" class="project-button">Hand Gesture Recognition</a>
-        <a href="https://github.com/srijansingh9/AndroidApp" target="_blank" class="project-button">Android App</a>
-        <a href="https://github.com/srijansingh9/YOLO_v3_Object_Detection" target="_blank" class="project-button">YOLO v3 Object Detection</a>
-        <a href="https://github.com/srijansingh9/Action_Recognition" target="_blank" class="project-button">Action Recognition</a>
-        <a href="https://github.com/srijansingh9/Traffic_Light_Recognition" target="_blank" class="project-button">Traffic Light Recognition</a>
+      <div style="display:flex; flex-wrap: wrap; gap:10px; justify-content:center;">
+        <a href="https://github.com/srijansingh9/Movie_Recommendation_System" target="_blank" style="padding:10px 20px; background:#888954; color:#fff; border-radius:5px; text-decoration:none;">Movie Recommender</a>
+        <a href="https://github.com/srijansingh9/Face_Recognition" target="_blank" style="padding:10px 20px; background:#888954; color:#fff; border-radius:5px; text-decoration:none;">Face Recognition</a>
+        <a href="https://github.com/srijansingh9/Hand_Gesture_Recognition" target="_blank" style="padding:10px 20px; background:#888954; color:#fff; border-radius:5px; text-decoration:none;">Hand Gesture Recognition</a>
+        <a href="https://github.com/srijansingh9/AndroidApp" target="_blank" style="padding:10px 20px; background:#888954; color:#fff; border-radius:5px; text-decoration:none;">Android App</a>
+        <a href="https://github.com/srijansingh9/YOLO_v3_Object_Detection" target="_blank" style="padding:10px 20px; background:#888954; color:#fff; border-radius:5px; text-decoration:none;">YOLO v3 Object Detection</a>
+        <a href="https://github.com/srijansingh9/Action_Recognition" target="_blank" style="padding:10px 20px; background:#888954; color:#fff; border-radius:5px; text-decoration:none;">Action Recognition</a>
+        <a href="https://github.com/srijansingh9/Traffic_Light_Recognition" target="_blank" style="padding:10px 20px; background:#888954; color:#fff; border-radius:5px; text-decoration:none;">Traffic Light Recognition</a>
       </div>
     </section>
 
-    <footer>
-      &copy; 2023 ADITI TANGRI | <a href="https://stepgndec.com/" target="_blank">Science and Technology Entrepreneurs' Park</a>
-    </footer>
   </div>
 
   <script>
-    // Map day to PDF paths
+    // PDF paths for each day
     const dayPdfs = {
-      day1: "pdfs/DAY 1 ( 23 JUNE 2025 ).pdf",
-      day2: "pdfs/DAY 2 ( 24 JUNE 2025 ).pdf",
-      day3: "pdfs/DAY 3 ( 25 JUNE 2025 ).pdf",
-      day4: "pdfs/DAY 4 ( 26 JUNE 2025 ).pdf",
-      day5: "pdfs/DAY 5 ( 27 JUNE 2025 ).pdf",
-      day6: "pdfs/DAY 6 ( 28 JUNE 2025 ).pdf",
-      day7: "pdfs/DAY 7 ( 29 JUNE 2025 ).pdf",
-      day8: "pdfs/DAY 8 ( 30 JUNE 2025 ).pdf",
-      day9: "pdfs/DAY 9 ( 1 JULY 2025 ).pdf",
-      day10: "pdfs/DAY 10 ( 2 JULY 2025 ).pdf",
-      day11: "pdfs/DAY 11 ( 3 JULY 2025 ).pdf",
-      day12: "pdfs/DAY 12 ( 4 JULY 2025 ).pdf",
-      day13: "pdfs/DAY 13 ( 5 JULY 2025 ).pdf",
-      day14: "pdfs/DAY 14 ( 6 JULY 2025 ).pdf",
-      day15: "pdfs/DAY 15 ( 7 JULY 2025 ).pdf",
-      day16: "pdfs/DAY 16 ( 8 JULY 2025 ).pdf",
-      day17: "pdfs/DAY 17 ( 9 JULY 2025 ).pdf",
-      day18: "pdfs/DAY 18 ( 10 JULY 2025 ).pdf",
-      day19: "pdfs/DAY 19 ( 11 JULY 2025 ).pdf",
-      day20: "pdfs/DAY 20 ( 12 JULY 2025 ).pdf",
+      1: "pdfs/DAY 1 ( 23 JUNE 2025 ).pdf",
+      2: "pdfs/DAY 2 ( 24 JUNE 2025 ).pdf",
+      3: "pdfs/DAY 3 ( 25 JUNE 2025 ).pdf",
+      4: "pdfs/DAY 4 ( 26 JUNE 2025 ).pdf",
+      5: "pdfs/DAY 5 ( 27 JUNE 2025 ).pdf",
+      6: "pdfs/DAY 6 ( 28 JUNE 2025 ).pdf",
+      7: "pdfs/DAY 7 ( 29 JUNE 2025 ).pdf",
+      8: "pdfs/DAY 8 ( 30 JUNE 2025 ).pdf",
+      9: "pdfs/DAY 9 ( 1 JULY 2025 ).pdf",
+      10: "pdfs/DAY 10 ( 2 JULY 2025 ).pdf",
+      11: "pdfs/DAY 11 ( 3 JULY 2025 ).pdf",
+      12: "pdfs/DAY 12 ( 4 JULY 2025 ).pdf",
+      13: "pdfs/DAY 13 ( 5 JULY 2025 ).pdf",
+      14: "pdfs/DAY 14 ( 6 JULY 2025 ).pdf",
+      15: "pdfs/DAY 15 ( 7 JULY 2025 ).pdf",
+      16: "pdfs/DAY 16 ( 8 JULY 2025 ).pdf",
+      17: "pdfs/DAY 17 ( 9 JULY 2025 ).pdf",
+      18: "pdfs/DAY 18 ( 10 JULY 2025 ).pdf",
+      19: "pdfs/DAY 19 ( 11 JULY 2025 ).pdf",
+      20: "pdfs/DAY 20 ( 12 JULY 2025 ).pdf"
     };
 
-    // Show one main section, hide others
+    // Show a section, hide others
     function showSection(sectionId) {
       const sections = document.querySelectorAll('.section');
       sections.forEach(s => s.classList.remove('active'));
       const target = document.getElementById(sectionId);
-      if (target) {
-        target.classList.add('active');
-      }
+      if (target) target.classList.add('active');
+      clearDaySelection();
       window.scrollTo(0, 0);
+    }
+
+    // Show Daily Diary with day list and no pdf initially
+    function showDailyDiary() {
+      showSection('daily-diary');
+      setPdf(null);
       clearDaySelection();
     }
 
-    // Show Daily Diary and clear pdf iframe (just list of days)
-    function showDailyDiary() {
-      const dailyDiary = document.getElementById('daily-diary');
-      const sections = document.querySelectorAll('.section');
-      sections.forEach(s => s.classList.remove('active'));
-      dailyDiary.classList.add('active');
-      setPdf(null);
-      clearDaySelection();
-      window.scrollTo(0,
+    // Clear active day highlight
+    function clearDaySelection() {
+      document.querySelectorAll('#day-list a.day-link').forEach(el => el.classList.remove('active'));
+    }
+
+    // Set PDF in iframe, or clear if null
+    function setPdf(dayNum) {
+      const iframe = document.getElementById('daily-pdf');
+      if (dayNum && dayPdfs[dayNum]) {
+        iframe.src = dayPdfs[dayNum];
+      } else {
+        iframe.src = "";
+      }
+    }
+
+    // Populate the day list nav dynamically
+    function populateDays() {
+      const dayList = document.getElementById('day-list');
+      dayList.innerHTML = ""; // Clear first
+      for (let i = 1; i <= 20; i++) {
+        const a = document.createElement('a');
+        a.textContent = `Day ${i}`;
+        a.href = "javascript:void(0)";
+        a.classList.add('day-link');
+        a.onclick = function() {
+          clearDaySelection();
+          a.classList.add('active');
+          setPdf(i);
+        };
+        dayList.appendChild(a);
+      }
+    }
+
+    // Initial setup
+    window.onload = function() {
+      populateDays();
+    };
+  </script>
+</body>
+</html>
